@@ -1,0 +1,8 @@
+service tesla
+{
+	disable = no
+	protocol = tcp
+	wait = no
+	user = tesla
+	server = /tesla
+}
