@@ -1,0 +1,6 @@
+version: '2'
+services:
+  task_admin_1:
+    build: .
+    ports:
+      - "9001:9001"
