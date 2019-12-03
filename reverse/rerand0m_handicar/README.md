@@ -14,3 +14,6 @@ cd backend
 ```bash
 docker rmi handicar-inside
 ```
+
+# Flag
+`ELON{1_4m_4_70p_n07ch_m3ch4n1c}`
