@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    style
+      include /index.include.css
+    title Pay Me Your Money: New Transaction
+  body
+    .logo-left
+      span.part-1 Pay
+      span.part-2 MeYourMoney
+    form(action="/", method="get")
+      button.cancel(type="submit") Cancel
+    .greetings We love fast and easy transactions!
+      .description To transer money complete the form bellow.
+    .content
+      h1 Transfer
+      form(action="/confirm" method="post")
+        .card
+          h1 From
+          .icon
+          b #{card.name} (#{card.balance}&#x20BF;)
+          input(type="number" name="amount" placeholder="How much?" required="required" max=card.balance min="1" step="0.1")
+        .card
+          h1 To
+          .icon
+          b Reciever's Card
+          input(type="number" name="to" placeholder="Card number" min="1000000000000000" max="9999999999999999" required="required")
+        input(type="hidden" name="from" value=card.id)
+        button(type="submit") Next
+
+    .footer ©2019 Paymeyourmoney, Inc. All rights reserved.
+      | <br> We type of love using new technologies...
+
+
+      

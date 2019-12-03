@@ -1,0 +1,7 @@
+< Julius > Hi Elon, it seems our past encryption system has been hacked
+< Elon > Hi Julius. Yes, it's true. What do you have to offer?
+< Julius > We can use a very ancient cipher. Have you heard anything about Caesar's cipher? I doubt anyone will be able to hack it. I'll use the big key
+< Elon > I don't think it's a good idea, but it's worth a look. Send me a sample
+< Julius > Good. I think no one will use brute force. Bye. 
+
+< Julius > Hi Elon. Sample in file!

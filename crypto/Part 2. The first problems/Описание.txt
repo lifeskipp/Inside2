@@ -1,0 +1,7 @@
+< Horst > hi Elon, have you thought about our encryption system?
+< Elon > hi Horst, not yet. Are there any suggestions?
+< Horst > I think as long as our company is too small, we can't worry about encryption and use my experience in cryptography.
+< Elon > Great. I've seen your work. I like them.
+< Horst > Great. I'll take care of it. I will use a modified algorithm.
+< Elon > you can take the first launch of our famous rocket as a key
+< Horst > Good. I'll send you a sample. It will be great if you check it out!

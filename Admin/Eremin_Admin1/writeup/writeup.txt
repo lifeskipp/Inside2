@@ -1,0 +1,24 @@
+Подключаемся к серверу через netcat
+
+Замечаем, что мы находимся в папке root.
+Вводим: "ls /", видим список папок, замечаем, папку /home, значит есть пользователи.
+Находим у пользователя helper, файл flag, просматриваем его, "cat /home/helper/flag".
+Видим: Make a request: wget https://nzkoff.ru/may/be/find/flag.txt flag. 
+Вводим эту команду, и сервер нам отвечает: "Can't establish a connection".
+Посмотрим файл подключенных интерфейсов: cat /etc/network/interfaces
+Видим: # The primary network interface
+iface enp3s0f0 inet static
+    address oneninetwo.onesixeight.eighteight.twotwofive
+    netmask 255.255.255.0
+    network 192.168.88.0
+    broadcast 192.168.88.255
+    gateway 192.168.88.1
+    dns-nameservers 8.8.8.8
+
+Заменяем: oneninetwo.onesixeight.eighteight.twotwofive на 192.168.88.225
+командой: sed 's/oneninetwo.onesixeight.eighteight.twotwofive/192.168.88.225/g'
+
+Теперь вводим: wget https://nzkoff.ru/may/be/find/flag.txt flag
+
+И в конце: cat /root/flag
+Выводится: ELON{FlagByNzK0ffAdmin_21xaw}

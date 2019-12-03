@@ -1,0 +1,5 @@
+Задача пройти паркур-головоломки
+После каждой пройденной комнаты вылазит часть флага
+в base64 S2Fr VGVi ZVRh a29l RWxv bk1h c2s=
+S2FrVGViZVRha29lRWxvbk1hc2s=
+Флаг - KakTebeTakoeElonMask
