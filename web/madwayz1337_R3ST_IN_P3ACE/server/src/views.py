@@ -45,26 +45,28 @@ def get_user(HASH_ID):
 
 @app.route('/access/check')
 def admin_access_check():
-    if request.args:
-        if ACCESS_TOKEN not in request.args:
-            return jsonify(create_error(f'Field {ACCESS_TOKEN} is required in json!'))
+    if not request.args:
+		return jsonify(create_error("GET parameters is required"))
+		
+	if ACCESS_TOKEN not in request.args:
+		return jsonify(create_error(f'Field {ACCESS_TOKEN} is required in json!'))
 
-        if not request.args[ACCESS_TOKEN]:
-            return jsonify(create_error(f'Field {ACCESS_TOKEN} can\'t be empty!'))
+	if not request.args[ACCESS_TOKEN]:
+		return jsonify(create_error(f'Field {ACCESS_TOKEN} can\'t be empty!'))
 
-        try:
-            access_token_decoded = jwt.decode(
-                request.args['access_token'],
-                verify=False,
-                algorithms=None)
-        except jwt.exceptions.DecodeError:
-            return jsonify(create_error('Check failed'))
+	try:
+		access_token_decoded = jwt.decode(
+			request.args['access_token'],
+			verify=False,
+			algorithms=None)
+	except jwt.exceptions.DecodeError:
+		return jsonify(create_error('Check failed'))
 
-        if ROLE not in access_token_decoded or ID not in access_token_decoded:
-            return jsonify(create_error(f'Key {ROLE} or {ID} doesn\'t exist in {ACCESS_TOKEN}'))
+	if ROLE not in access_token_decoded or ID not in access_token_decoded:
+		return jsonify(create_error(f'Key {ROLE} or {ID} doesn\'t exist in {ACCESS_TOKEN}'))
 
-        isRoot = access_token_decoded[ROLE] == ROOT_ID and access_token_decoded[ID] == 1
-        return jsonify(dict(status=isRoot))
+	isRoot = access_token_decoded[ROLE] == ROOT_ID and access_token_decoded[ID] == 1
+	return jsonify(dict(status=isRoot))
 
 @app.route('/admin', methods=['POST'])
 def admin():
