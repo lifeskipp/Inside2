@@ -46,27 +46,27 @@ def get_user(HASH_ID):
 @app.route('/access/check')
 def admin_access_check():
     if not request.args:
-		return jsonify(create_error("GET parameters is required"))
-		
-	if ACCESS_TOKEN not in request.args:
-		return jsonify(create_error(f'Field {ACCESS_TOKEN} is required in json!'))
+        return jsonify(create_error("GET parameters is required"))
+        
+    if ACCESS_TOKEN not in request.args:
+        return jsonify(create_error(f'Field {ACCESS_TOKEN} is required in json!'))
 
-	if not request.args[ACCESS_TOKEN]:
-		return jsonify(create_error(f'Field {ACCESS_TOKEN} can\'t be empty!'))
+    if not request.args[ACCESS_TOKEN]:
+        return jsonify(create_error(f'Field {ACCESS_TOKEN} can\'t be empty!'))
 
-	try:
-		access_token_decoded = jwt.decode(
-			request.args['access_token'],
-			verify=False,
-			algorithms=None)
-	except jwt.exceptions.DecodeError:
-		return jsonify(create_error('Check failed'))
+    try:
+        access_token_decoded = jwt.decode(
+            request.args['access_token'],
+            verify=False,
+            algorithms=None)
+    except jwt.exceptions.DecodeError:
+        return jsonify(create_error('Check failed'))
 
-	if ROLE not in access_token_decoded or ID not in access_token_decoded:
-		return jsonify(create_error(f'Key {ROLE} or {ID} doesn\'t exist in {ACCESS_TOKEN}'))
+    if ROLE not in access_token_decoded or ID not in access_token_decoded:
+        return jsonify(create_error(f'Key {ROLE} or {ID} doesn\'t exist in {ACCESS_TOKEN}'))
 
-	isRoot = access_token_decoded[ROLE] == ROOT_ID and access_token_decoded[ID] == 1
-	return jsonify(dict(status=isRoot))
+    isRoot = access_token_decoded[ROLE] == ROOT_ID and access_token_decoded[ID] == 1
+    return jsonify(dict(status=isRoot))
 
 @app.route('/admin', methods=['POST'])
 def admin():
@@ -104,7 +104,7 @@ def admin():
         return jsonify(create_error(f'{VULNERABLE_NAME} is required in GET parameters!'))
 
     vulned_arg = request.args[VULNERABLE_NAME]
-    PATTERN = r'(b64|base64|decode|encode|rm|environ|mkdir|mkdirs|walk|hex|b16|base16|ascii|popen|system|truncate|removedirs|rmdirs|subprocess|remove|docker|cp|mv)'
+    PATTERN = r'(b64|base64|decode|encode|rm|environ|mkdir|mkdirs|walk|hex|b16|base16|ascii|popen|system|truncate|removedirs|rmdirs|subprocess|remove|docker|cp|mv|nc|shell|bash|sh|server|tmp)'
     if re.findall(PATTERN, vulned_arg):
         return jsonify(create_error('ACCESS DENIED! You can\'t use destructive methods'))
 
